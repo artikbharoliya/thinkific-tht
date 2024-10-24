@@ -39,7 +39,6 @@ async function seed() {
         data: user,
       });
     }
-
     console.log("Seed data has been inserted successfully.");
   } catch (error) {
     console.error("Error seeding data:", error);
