@@ -1,0 +1,131 @@
+body {
+  background-color: #101010;
+  color: #fff;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+input, textarea {
+  background-color: transparent;
+  border: 1px solid burlywood;
+  border-radius: 6px;
+  padding: 6px 12px;
+  color: #fff;
+}
+
+.authorname {
+  /* text-decoration: none; */
+  color: #fff;
+}
+
+.authorname:hover {
+  text-decoration: none;
+  color: #aaaaaa;
+}
+
+
+.section {
+  display: flex;
+  justify-content: center;
+
+}
+
+.navcontainer {
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 48px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1080px;
+}
+
+.button-primary {
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #fff;
+  background-color: burlywood;
+  border-radius: 6px;
+}
+
+.button-primary:hover {
+  color: #fff;
+  background-color: #ecc99b;
+  border-radius: 6px;
+}
+
+.button-secondary {
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid burlywood; 
+  border-radius: 6px;
+}
+
+.button-secondary:hover {
+  color: #fff;
+  background-color: #ecc99b;
+  border-radius: 6px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.postContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #454545;
+  margin: 16px 0;
+  justify-content: flex-start;
+  padding: 22px 0;
+  border-radius: 6px;
+  box-shadow: 5px 5px 8px #45454521;
+}
+
+.authorContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.authorContainer > img {
+  margin: 0 8px;
+  
+}
+
+.contentContainer {
+  padding-left: 28px;
+}
+
+.postTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 8px 0;
+
+}
+
+.postContent {
+  margin-bottom: 8px;
+}
+.postTime {
+  margin-left: 18px;
+  font-size: 10px;
+  color: #e3e3e3;
+
+}
+
+.journalEntryForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.journalEntryForm > input, textarea {
+  margin-bottom: 18px;
+}

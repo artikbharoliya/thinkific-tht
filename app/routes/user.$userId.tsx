@@ -1,16 +1,8 @@
-import type { Post, User } from "@prisma/client";
-import { json, type LoaderFunction, type MetaFunction } from "@remix-run/node";
-import { Outlet, useLoaderData } from "@remix-run/react";
-import { fetchPosts } from "prisma/helpers/post";
-import { fetchUsers } from "prisma/helpers/users";
+import { ActionFunctionArgs, json, LoaderFunction, LoaderFunctionArgs, redirect } from "@remix-run/node";
+import { Form, useActionData, useLoaderData, useParams } from "@remix-run/react";
+import { createPost, findPost, findUserPosts } from "prisma/helpers/post";
 import { PostWidget } from "~/components/PostWidget";
-
-export const meta: MetaFunction = () => {
-  return [
-    { title: "Public Journal" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
-};
+import { validateJournalEntryData } from "~/utils/validations";
 
 type LoaderData = {
   posts: {
@@ -19,19 +11,17 @@ type LoaderData = {
     content: string;
     authorId: number;
     createdAt: string;
-    author: User;
   }[];
-  users: User[]
 };
 
-export const loader: LoaderFunction = async () => {
-  const posts = await fetchPosts();
-  const users = await fetchUsers();
 
-  return json({ posts, users });
+export const loader: LoaderFunction = async ({ params }: LoaderFunctionArgs) => {
+  const userId = params.userId || "";
+  const posts = await findUserPosts(userId);
+  return json({ posts });
 };
 
-export default function Index() {
+export default function User() {
   const data = useLoaderData<LoaderData>();
   return (
     <div className="section">
