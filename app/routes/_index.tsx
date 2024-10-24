@@ -1,8 +1,7 @@
-import type { Post, User } from "@prisma/client";
+import type { User } from "@prisma/client";
 import { json, type LoaderFunction, type MetaFunction } from "@remix-run/node";
-import { Outlet, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { fetchPosts } from "prisma/helpers/post";
-import { fetchUsers } from "prisma/helpers/users";
 import { PostWidget } from "~/components/PostWidget";
 
 export const meta: MetaFunction = () => {
@@ -21,14 +20,11 @@ type LoaderData = {
     createdAt: string;
     author: User;
   }[];
-  users: User[]
 };
 
 export const loader: LoaderFunction = async () => {
   const posts = await fetchPosts();
-  const users = await fetchUsers();
-
-  return json({ posts, users });
+  return json({ posts });
 };
 
 export default function Index() {
