@@ -1,8 +1,11 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from 'bcryptjs';
+
 const userData = [
   {
     name: "Jane",
     email: "jane@example.com",
+    password: bcrypt.hashSync('password123', 10),
     posts: {
       create: [
         {
@@ -15,6 +18,7 @@ const userData = [
   {
     name: "Joe",
     email: "joe@example.com",
+    password: bcrypt.hashSync('ilovemycat', 10),
     posts: {
       create: [
         {

@@ -1,9 +1,9 @@
 import { PropsWithChildren } from "react";
-import { Header } from "./Header";
+import { Navbar } from "./Navbar";
 
 export const Layout = ({ children }: PropsWithChildren) => (
   <>
-    <Header />
+    <Navbar />
     <div style={{ margin: "1rem 2rem" }}>{children}</div>
   </>
 );
