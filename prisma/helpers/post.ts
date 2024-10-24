@@ -10,31 +10,24 @@ export const fetchPosts = async () => {
   return results;
 };
 
-export const findPost = async (id: string) => {
-  return await prisma.post.findUnique({
-    where: { id: Number(id) },
-    include: { author: true },
-  });
-};
-
 export const findUserPosts = async (userId: string) => {
   return await prisma.post.findMany({
+    orderBy: [
+      { createdAt: "desc" }
+    ],
     where: { authorId: Number(userId) },
     include: { author: true },
   });
 }
 
-export const createPost = async (title: string, content: string, email: string) => {
-  const user = await prisma.user.findUnique({ where: { email } });
-  if (!user) {
-    throw new Error("User not found");
-  }
-  const authorId = user.id;
-  return await prisma.post.create({
+export const createPost = async (title: string, content: string, userId: number | null) => {
+  const authorId = userId || null;
+  const result = await prisma.post.create({
     data: {
       title,
       content,
       authorId,
     },
   });
+  return result;
 };

@@ -2,6 +2,8 @@ body {
   background-color: #101010;
   color: #fff;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 input, textarea {
@@ -12,8 +14,12 @@ input, textarea {
   color: #fff;
 }
 
+input:disabled {
+  background-color: #454545;
+  cursor: not-allowed;
+}
+
 .authorname {
-  /* text-decoration: none; */
   color: #fff;
 }
 
@@ -22,11 +28,17 @@ input, textarea {
   color: #aaaaaa;
 }
 
-
 .section {
   display: flex;
   justify-content: center;
 
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  background-color: #101010;
+  padding: 12px 0;
 }
 
 .navcontainer {

@@ -1,8 +1,8 @@
-import { ActionFunctionArgs, json, LoaderFunction, LoaderFunctionArgs, redirect } from "@remix-run/node";
-import { Form, useActionData, useLoaderData, useParams } from "@remix-run/react";
-import { createPost, findPost, findUserPosts } from "prisma/helpers/post";
+import { User } from "@prisma/client";
+import { json, LoaderFunction, LoaderFunctionArgs } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import { findUserPosts } from "prisma/helpers/post";
 import { PostWidget } from "~/components/PostWidget";
-import { validateJournalEntryData } from "~/utils/validations";
 
 type LoaderData = {
   posts: {
@@ -11,9 +11,9 @@ type LoaderData = {
     content: string;
     authorId: number;
     createdAt: string;
+    author: User;
   }[];
 };
-
 
 export const loader: LoaderFunction = async ({ params }: LoaderFunctionArgs) => {
   const userId = params.userId || "";
@@ -21,7 +21,7 @@ export const loader: LoaderFunction = async ({ params }: LoaderFunctionArgs) => 
   return json({ posts });
 };
 
-export default function User() {
+export default function UserPosts() {
   const data = useLoaderData<LoaderData>();
   return (
     <div className="section">

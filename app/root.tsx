@@ -4,9 +4,12 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 import { Layout } from "./components/Layout";
 import './styles/style.css'
+import { json, LoaderFunction, LoaderFunctionArgs } from "@remix-run/node";
+import { getUserDataFromRequest } from "./auth/auth";
 
 export function Document({ children }: { children: React.ReactNode }) {
   return (
@@ -26,10 +29,16 @@ export function Document({ children }: { children: React.ReactNode }) {
   );
 }
 
+export const loader: LoaderFunction = async ({ request }: LoaderFunctionArgs) => {
+  const userId = await getUserDataFromRequest(request);
+  return json(userId);
+};
+
 export default function App() {
+  const userId = useLoaderData<string>();
   return (
     <Document>
-      <Layout>
+      <Layout userId={userId}>
         <Outlet />
       </Layout>
     </Document>
