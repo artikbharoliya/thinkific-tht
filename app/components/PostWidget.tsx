@@ -20,7 +20,7 @@ export const PostWidget: React.FC<PostWidgetProps> = ({
     <>
       <div className="postContainer">
         <div className="authorContainer">
-          <img style={{ display: 'flex', justifyContent: 'center' }} src='/user.svg' height="16x" width="16x" about="user" />
+          <img style={{ display: 'flex', justifyContent: 'center' }} alt="user-icon" src='/user.svg' height="16x" width="16x" about="user" />
           {isAnonymousPost ?
             <span>Anonymous</span> :
             <Link to={`/user/${authorId}`} className="authorname"><span>{author?.name || 'Anonymous'}</span></Link>
